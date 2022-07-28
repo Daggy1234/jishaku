@@ -76,12 +76,10 @@ class WrappedPaginator(commands.Paginator):
                 if last_delimiter != -1:
                     if self.include_wrapped and line[last_delimiter] != '\n':
                         super().add_line(line[start:last_delimiter + 1])
-                        needle = last_delimiter + 1
-                        start = last_delimiter + 1
                     else:
                         super().add_line(line[start:last_delimiter])
-                        needle = last_delimiter + 1
-                        start = last_delimiter + 1
+                    start = last_delimiter + 1
+                    needle = last_delimiter + 1
                 elif last_space != -1:
                     super().add_line(line[start:last_space])
                     needle = last_space + 1
@@ -100,8 +98,7 @@ class WrappedPaginator(commands.Paginator):
 
             needle += 1
 
-        last_line = line[start:needle]
-        if last_line:
+        if last_line := line[start:needle]:
             super().add_line(last_line)
 
         if empty:

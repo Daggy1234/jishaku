@@ -33,9 +33,7 @@ def button_either_arg(
     Compatibility function to allow interaction and button to come in either order
     """
 
-    if isinstance(a, discord.Interaction):
-        return (a, b)  # type: ignore
-    return (b, a)  # type: ignore
+    return (a, b) if isinstance(a, discord.Interaction) else (b, a)
 
 
 class PaginatorInterface(ui.View):  # pylint: disable=too-many-instance-attributes
@@ -233,9 +231,7 @@ class PaginatorInterface(ui.View):  # pylint: disable=too-many-instance-attribut
         Is this interface closed?
         """
 
-        if not self.task:
-            return False
-        return self.task.done()
+        return self.task.done() if self.task else False
 
     async def send_lock_delayed(self):
         """

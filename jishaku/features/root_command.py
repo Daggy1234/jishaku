@@ -101,11 +101,13 @@ class RootCommand(Feature):
 
                     summary.append("")  # blank line
             except psutil.AccessDenied:
-                summary.append(
-                    "psutil is installed, but this process does not have high enough access rights "
-                    "to query process information."
+                summary.extend(
+                    (
+                        "psutil is installed, but this process does not have high enough access rights "
+                        "to query process information.",
+                        "",
+                    )
                 )
-                summary.append("")  # blank line
 
         cache_summary = f"{len(self.bot.guilds)} guild(s) and {len(self.bot.users)} user(s)"
 

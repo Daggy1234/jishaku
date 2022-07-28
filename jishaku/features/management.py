@@ -272,7 +272,7 @@ class ManagementFeature(Feature):
                             if pool:
                                 # If the pool exists, this should be a subcommand
                                 selected_command = pool[index]  # type: ignore
-                                name += selected_command.name + " "
+                                name += f"{selected_command.name} "
 
                                 if hasattr(selected_command, '_children'):  # type: ignore
                                     pool = list(selected_command._children.values())  # type: ignore  # pylint: disable=protected-access
